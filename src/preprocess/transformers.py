@@ -50,7 +50,7 @@ class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
         
         X = X.copy()
         pib_columns = [c for c in X.columns if c.startswith('PIB')]
-        X.dropna(subset=cols_pib, how='any', axis=0, inplace=True)
+        X.dropna(subset=pib_columns, how='any', axis=0, inplace=True)
         for c in pib_columns:
             X[c] = X[c].apply(convert_int)
 
