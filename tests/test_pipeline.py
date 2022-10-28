@@ -1,6 +1,9 @@
 import pandas as pd
+import numpy as np
 from sklearn.pipeline import Pipeline
-from src.preprocess.transformers import RainfallInitialPreprocess, CentralBankInitialPreprocess
+from src.preprocess.transformers import (RainfallInitialPreprocess, 
+                                        CentralBankInitialPreprocess,
+                                        CentralBankPIBPreprocess)
 
 def test_rainfall_initial_preprocess(rainfall_data):
     pipeline = Pipeline(
@@ -21,7 +24,7 @@ def test_cb_initial_preprocess(cb_data):
     
     pipeline = Pipeline(
         [
-            ('RainfallInitialPreprocess', CentralBankInitialPreprocess())
+            ('CentralBankInitialPreprocess', CentralBankInitialPreprocess())
         ]
     )
 
@@ -30,3 +33,21 @@ def test_cb_initial_preprocess(cb_data):
     assert transformed['Periodo'].isnull().sum() == 0
     assert transformed['Periodo'].duplicated().sum() == 0
     assert type(transformed['Periodo'].iloc[0]) == pd.Timestamp
+
+def test_cb_pib_preprocess(cb_data):
+
+    pib_columns = [c for c in cb_data if c.startswith('PIB')]
+    cb_data = cb_data[pib_columns]
+
+    pipeline = Pipeline(
+        [
+            ('CentralBankPIBPreprocess', CentralBankPIBPreprocess())
+        ]
+    )
+
+    transformed = pipeline.transform(cb_data)
+
+    for c in transformed.columns:
+        assert transformed[c] == np.int
+    
+    
