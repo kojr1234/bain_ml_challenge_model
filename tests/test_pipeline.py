@@ -8,7 +8,7 @@ def test_rainfall_initial_preprocess(rainfall_data):
         ]
     )
 
-    transformed = pipeline.transoform(rainfall_data)
+    transformed = pipeline.transform(rainfall_data)
     head = transformed.head(1)
     tail = transformed.tail(1)
 
