@@ -38,7 +38,7 @@ class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
 
 class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
     """
-    This class implements the transformer class for CentralBank PIB information,
+    This class implements the transformer function for CentralBank PIB information,
     converting the values to integer
     """
     def fit(self, X, y=None):
@@ -49,9 +49,42 @@ class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
             return int(x.replace('.',''))
         
         X = X.copy()
-        cols_pib = [c for c in X.columns if c.startswith('PIB')]
+        pib_columns = [c for c in X.columns if c.startswith('PIB')]
         X.dropna(subset=cols_pib, how='any', axis=0, inplace=True)
-        for c in cols_pib:
+        for c in pib_columns:
             X[c] = X[c].apply(convert_int)
+
+        return X
+
+class CentralBankIMACECPreprocess(BaseEstimator, TransformerMixin):
+    """
+    This class implements the transformer function for CentralBank IMACEC
+    infromation, converting the values to float and correcting the 
+    scale of the values
+    """
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        def to_100(x): 
+            x = x.split('.')
+            if x[0].startswith('1'):
+                if len(x[0]) >2:
+                    return float(x[0] + '.' + x[1])
+                else:
+                    x = x[0]+x[1]
+                    return float(x[0:3] + '.' + x[3:])
+            else:
+                if len(x[0])>2:
+                    return float(x[0][0:2] + '.' + x[0][-1])
+                else:
+                    x = x[0] + x[1]
+                    return float(x[0:2] + '.' + x[2:])
+        
+        X = X.copy()
+        imacec_columns = [c for c in X.columns if c.lower().startswith('imacec')]
+        X.dropna(subset=imacec_columns, how='any', axis=0, inplace=True)
+        for c in imacec_columns:
+            X[c] = X[c].apply(to_100)
 
         return X

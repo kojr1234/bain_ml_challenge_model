@@ -3,7 +3,8 @@ import numpy as np
 from sklearn.pipeline import Pipeline
 from src.preprocess.transformers import (RainfallInitialPreprocess, 
                                         CentralBankInitialPreprocess,
-                                        CentralBankPIBPreprocess)
+                                        CentralBankPIBPreprocess,
+                                        CentralBankIMACECPreprocess)
 
 def test_rainfall_initial_preprocess(rainfall_data):
     pipeline = Pipeline(
@@ -36,7 +37,7 @@ def test_cb_initial_preprocess(cb_data):
 
 def test_cb_pib_preprocess(cb_data):
 
-    pib_columns = [c for c in cb_data if c.startswith('PIB')]
+    pib_columns = [c for c in cb_data.columns if c.lower().startswith('pib')]
     cb_data = cb_data[pib_columns]
 
     pipeline = Pipeline(
@@ -47,7 +48,27 @@ def test_cb_pib_preprocess(cb_data):
 
     transformed = pipeline.transform(cb_data)
 
-    for c in transformed.columns:
+    for c in pib_columns:
         assert transformed[c].dtype == np.int64
     
+def test_cb_imacec_preprocess(cb_data):
+
+    imacec_columns = [c for c in cb_data.columns if c.lower().startswith('imacec')]
+    cb_data = cb_data[imacec_columns]
+
+    pipeline = Pipeline(
+        [
+            ('CentralBankIMACECPreprocess', CentralBankIMACECPreprocess())
+        ]
+    )
+
+    transformed = pipeline.transform(cb_data)
+
+    for c in imacec_columns:
+        assert transformed[c].min() > 30
+        assert transformed[c].max() > 100 
+        assert transformed[c].dtype == np.float64
+    
+
+
 
