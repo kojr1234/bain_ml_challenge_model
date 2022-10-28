@@ -4,7 +4,8 @@ from sklearn.pipeline import Pipeline
 from src.preprocess.transformers import (RainfallInitialPreprocess, 
                                         CentralBankInitialPreprocess,
                                         CentralBankPIBPreprocess,
-                                        CentralBankIMACECPreprocess)
+                                        CentralBankIMACECPreprocess,
+                                        MilkPricePreprocess)
 
 def test_rainfall_initial_preprocess(rainfall_data):
     pipeline = Pipeline(
@@ -67,6 +68,28 @@ def test_cb_imacec_iv_preprocess(cb_data):
         assert transformed[c].min() > 30
         assert transformed[c].max() > 100 
         assert transformed[c].dtype == np.float64
+
+def test_milk_price_preprocess(milk_price_data):
+
+    pipeline = Pipeline(
+        [
+            ('MilkPricePreprocess', MilkPricePreprocess())
+        ]
+    )
+
+    transformed = pipeline.transform(milk_price_data)
+
+    assert 'mes' in transformed.columns
+    assert 'ano' in transformed.columns
+    assert 'mes-ano' in transformed.columns
+    
+    for mes_ano in transformed['mes-ano'].sample(5):
+        assert len(mes_ano.split('-')) == 2
+        assert int(mes_ano.split('-')[0])  <= 12
+        assert int(mes_ano.split('-')[0])  > 0
+
+        assert int(mes_ano.split('-')[1])  >= 1979
+        assert int(mes_ano.split('-')[1])  < 2022
     
 
 

@@ -39,7 +39,7 @@ class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
 class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
     """
     This class implements the transformer function for CentralBank PIB information,
-    converting the values to integer
+    converting the values to integer. This transformer also removes null from data.
     """
     def fit(self, X, y=None):
         return self
@@ -60,7 +60,7 @@ class CentralBankIMACECPreprocess(BaseEstimator, TransformerMixin):
     """
     This class implements the transformer function for CentralBank IMACEC
     infromation, converting the values to float and correcting the 
-    scale of the values
+    scale of the values. This transformer also removes null values.
     """
     def fit(self, X, y=None):
         return self
@@ -88,4 +88,24 @@ class CentralBankIMACECPreprocess(BaseEstimator, TransformerMixin):
         for c in imacec_iv_columns:
             X[c] = X[c].apply(to_100)
 
+        return X
+
+class MilkPricePreprocess(BaseEstimator, TransformerMixin):
+    """
+    Initial preprocess step necessary for milk price data.
+    This class transforms string columns into datetime and
+    removes null values.
+    """
+    def fit(self, X, y=None):
+        return X
+
+    def transform(self, X):
+        
+        import locale
+        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+
+        X.rename(columns = {'Anio': 'ano', 'Mes': 'mes_pal'}, inplace = True)
+        X['mes'] = pd.to_datetime(X['mes_pal'] + '.', format = '%b')
+        X['mes'] = X['mes'].apply(lambda x: x.month)
+        X['mes-ano'] = X.apply(lambda x: f'{x.mes}-{x.ano}', axis = 1)
         return X
