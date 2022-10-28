@@ -19,4 +19,19 @@ class RainfallInitialPreprocess(BaseEstimator, TransformerMixin):
         return X
 
 class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
-    pass
+    """
+    Initial preprocess step necessary for central bank data.
+    This class transforms Periodo into datetime and removes duplicates
+    and null values.
+    """
+    
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        X = X.copy()
+        X['Periodo'] = X['Periodo'].apply(lambda x: x[0:10])
+        X['Periodo'] = pd.to_datetime(X['Periodo'], format='%Y-%m-%d', errors='coerce')
+        X.drop_duplicates(subset='Periodo', inplace=True)
+        X = X.dropna(subset='Periodo')
+        return X
