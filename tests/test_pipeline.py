@@ -1,5 +1,6 @@
+import pandas as pd
 from sklearn.pipeline import Pipeline
-from src.preprocess.transformers import RainfallInitialPreprocess
+from src.preprocess.transformers import RainfallInitialPreprocess, CentralBankInitialPreprocess
 
 def test_rainfall_initial_preprocess(rainfall_data):
     pipeline = Pipeline(
@@ -16,4 +17,16 @@ def test_rainfall_initial_preprocess(rainfall_data):
     assert 'ano' in transformed.columns
     assert head.date.item() < tail.date.item()
 
+def test_centralbank_initial_preprocess(centralbank_data):
     
+    pipeline = Pipeline(
+        [
+            ('RainfallInitialPreprocess', CentralBankInitialPreprocess())
+        ]
+    )
+
+    transformed = pipeline.transform(centralbank_data)
+
+    assert transformed['Periodo'].isnull().sum() == 0
+    assert transformed['Periodo'].duplicated().sum() == 0
+    assert type(transformed['Periodo'].iloc[0]) == pd.Timestamp
