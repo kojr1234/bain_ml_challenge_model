@@ -48,6 +48,6 @@ def test_cb_pib_preprocess(cb_data):
     transformed = pipeline.transform(cb_data)
 
     for c in transformed.columns:
-        assert transformed[c] == np.int
+        assert transformed[c].dtype == np.int64
     
-    
+

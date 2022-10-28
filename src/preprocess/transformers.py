@@ -33,7 +33,7 @@ class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
         X['Periodo'] = X['Periodo'].apply(lambda x: x[0:10])
         X['Periodo'] = pd.to_datetime(X['Periodo'], format='%Y-%m-%d', errors='coerce')
         X.drop_duplicates(subset='Periodo', inplace=True)
-        X = X.dropna(subset='Periodo')
+        X.dropna(subset='Periodo', inplace=True)
         return X
 
 class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
@@ -41,4 +41,17 @@ class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
     This class implements the transformer class for CentralBank PIB information,
     converting the values to integer
     """
-    pass
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        def convert_int(x):
+            return int(x.replace('.',''))
+        
+        X = X.copy()
+        cols_pib = [c for c in X.columns if c.startswith('PIB')]
+        X.dropna(subset=cols_pib, how='any', axis=0, inplace=True)
+        for c in cols_pib:
+            X[c] = X[c].apply(convert_int)
+
+        return X
