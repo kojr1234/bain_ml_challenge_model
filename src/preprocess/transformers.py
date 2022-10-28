@@ -36,7 +36,7 @@ class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
         X = X.dropna(subset='Periodo')
         return X
 
-class CentralBankPIBPreprocess(BaseEstimator, TransfomerMixin):
+class CentralBankPIBPreprocess(BaseEstimator, TransformerMixin):
     """
     This class implements the transformer class for CentralBank PIB information,
     converting the values to integer
