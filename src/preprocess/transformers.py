@@ -32,6 +32,8 @@ class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
         X = X.copy()
         X['Periodo'] = X['Periodo'].apply(lambda x: x[0:10])
         X['Periodo'] = pd.to_datetime(X['Periodo'], format='%Y-%m-%d', errors='coerce')
+        X['mes'] = X['Periodo'].apply(lambda x: x.month)
+        X['ano'] = X['Periodo'].apply(lambda x: x.year)
         X.drop_duplicates(subset='Periodo', inplace=True)
         X.dropna(subset='Periodo', inplace=True)
         return X
