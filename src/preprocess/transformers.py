@@ -82,9 +82,10 @@ class CentralBankIMACECPreprocess(BaseEstimator, TransformerMixin):
                     return float(x[0:2] + '.' + x[2:])
         
         X = X.copy()
-        imacec_columns = [c for c in X.columns if c.lower().startswith('imacec')]
-        X.dropna(subset=imacec_columns, how='any', axis=0, inplace=True)
-        for c in imacec_columns:
+        imacec_iv_columns = [c for c in X.columns if c.lower().startswith('imacec')] + \
+            ['Indice_de_ventas_comercio_real_no_durables_IVCM']
+        X.dropna(subset=imacec_iv_columns, how='any', axis=0, inplace=True)
+        for c in imacec_iv_columns:
             X[c] = X[c].apply(to_100)
 
         return X

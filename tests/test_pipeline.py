@@ -38,7 +38,6 @@ def test_cb_initial_preprocess(cb_data):
 def test_cb_pib_preprocess(cb_data):
 
     pib_columns = [c for c in cb_data.columns if c.lower().startswith('pib')]
-    cb_data = cb_data[pib_columns]
 
     pipeline = Pipeline(
         [
@@ -51,10 +50,10 @@ def test_cb_pib_preprocess(cb_data):
     for c in pib_columns:
         assert transformed[c].dtype == np.int64
     
-def test_cb_imacec_preprocess(cb_data):
+def test_cb_imacec_iv_preprocess(cb_data):
 
-    imacec_columns = [c for c in cb_data.columns if c.lower().startswith('imacec')]
-    cb_data = cb_data[imacec_columns]
+    imacec_iv_columns = [c for c in cb_data.columns if c.lower().startswith('imacec')] + \
+        ['Indice_de_ventas_comercio_real_no_durables_IVCM']
 
     pipeline = Pipeline(
         [
@@ -64,10 +63,13 @@ def test_cb_imacec_preprocess(cb_data):
 
     transformed = pipeline.transform(cb_data)
 
-    for c in imacec_columns:
+    for c in imacec_iv_columns:
         assert transformed[c].min() > 30
         assert transformed[c].max() > 100 
         assert transformed[c].dtype == np.float64
+    
+
+
     
 
 
