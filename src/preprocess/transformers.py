@@ -13,3 +13,6 @@ class RainfallInitialPreprocess(BaseEstimator, TransformerMixin):
         X['mes'] = X.date.apply(lambda x: x.month)
         X['ano'] = X.date.apply(lambda x: x.year)
         return X
+
+class CentralBankInitialPreprocess(BaseEstimator, TransformerMixin):
+    pass
