@@ -9,8 +9,8 @@ def test_rainfall_initial_preprocess(rainfall_data):
     )
 
     transformed = pipeline.transoform(rainfall_data)
-    head = transform.head(1)
-    tail = transform.tail(1)
+    head = transformed.head(1)
+    tail = transformed.tail(1)
 
     assert 'mes' in transformed.columns
     assert 'ano' in transformed.columns
