@@ -10,12 +10,16 @@ With tox installed, you can go to the source directory (the same folder where to
 
 ```tox```
 
-To install all necessary packages and tests.
-To only train the model, you can run:
+To install all necessary packages and run the whole pipeline.
+You can run the test pipeline by executing:
+
+```tox -e test_package```
+
+It is also possible to run onyl the train pipeline by executing the command:
 
 ```tox -e train```
 
-And finally, if you want to run the API locally, you can run:
+And finally, if you want to only host the API locally:
 
 ```tox -e run_app```
 
