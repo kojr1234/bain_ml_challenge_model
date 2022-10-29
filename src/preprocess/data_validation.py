@@ -1,8 +1,15 @@
-from typing import List, Optional, Tuple, Union, Any
+from typing import List, Optional, Any
 
 import numpy as np
 import pandas as pd
 from pydantic import BaseModel, ValidationError
+
+"""
+This file includes all schemas for the necessary data.
+These schemas helps to improve data consistency and
+automatically address the incorrect data type for each
+data field.
+"""
 
 class RainfallDataInputSchema(BaseModel):
     date: Optional[str]
@@ -14,7 +21,6 @@ class RainfallDataInputSchema(BaseModel):
     Biobio: Optional[float]
     La_Araucania: Optional[float]
     Los_Rios: Optional[float]
-    # Transported: Optional[str] target variable should not be included
     
 class CentralBankDataInputSchema(BaseModel):
     Periodo: Optional[str]
