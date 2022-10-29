@@ -128,7 +128,12 @@ def validate_inputs(*,
     centralbank_data: pd.DataFrame,
     milkprice_data: pd.DataFrame) -> tuple[pd.DataFrame, Optional[str]]:
     """
-    This function validates the input data column values
+    This function validates the input data column values.
+    To validate, pydantic provide a number of auxiliary variables
+    to ensure the data consistency. If the data values don't match
+    the types defined in the schema, pydantic raises an error. 
+    Pydantic also has other advantages, such as automatically
+    converting strings to numerical if applicable.
     """
 
     rainfall_errors = None
