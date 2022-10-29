@@ -1,12 +1,11 @@
 import logging
 import numpy as np
-import pandas as pd
 
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 
 from src.config.core import config
-from src.preprocess.data_manager import load_dataset
+from src.preprocess.data_manager import load_dataset, save_pipeline
 from src.pipeline import pipeline_final_data, preprocess_data
 
 logging.basicConfig(level=logging.INFO)
@@ -23,8 +22,8 @@ def run_training() -> None:
 
     training_dataset = preprocess_data(
         rainfall_data=rainfall_data,
-        cb_data=cb_data,
-        milk_data=milk_data
+        centralbank_data=cb_data,
+        milkprice_data=milk_data
     )
 
     X = training_dataset[config.model_config.features]
@@ -44,11 +43,14 @@ def run_training() -> None:
         scoring = 'r2'
     )
     grid.fit(X_train, y_train)
+
+    save_pipeline(pipeline_to_persist=grid)
+
     y_predicted = grid.predict(X_test)
 
     rmse = mean_squared_error(y_test, y_predicted)
     r2 = r2_score(y_test, y_predicted)
-
+    
     print('RMSE: ', rmse)
     print('R2: ', r2)
 

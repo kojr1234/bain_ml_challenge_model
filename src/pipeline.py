@@ -40,19 +40,19 @@ pipeline_final_data = Pipeline([('scale', StandardScaler()),
 
 def preprocess_data(*,
     rainfall_data: pd.DataFrame,
-    cb_data: pd.DataFrame,
-    milk_data: pd.DataFrame
+    centralbank_data: pd.DataFrame,
+    milkprice_data: pd.DataFrame
     ) -> pd.DataFrame:
     """
     Preprocess raw data to be used as input for the model
     """
 
     rainfall_data = pipeline_rainfall.transform(rainfall_data)
-    cb_data = pipeline_cb.transform(cb_data)
-    milk_data = pipeline_milk.transform(milk_data)
+    centralbank_data = pipeline_cb.transform(centralbank_data)
+    milkprice_data = pipeline_milk.transform(milkprice_data)
 
     final_data = reduce(lambda l, r: pd.merge(l, r, on=['mes','ano'], how='inner'),
-                        [rainfall_data, cb_data, milk_data])
+                        [rainfall_data, centralbank_data, milkprice_data])
 
     feature_columns = config.model_config.features
     target_column = [config.model_config.target]
