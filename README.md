@@ -1,5 +1,5 @@
 # Bain Machine Learning Engineer Challenge
-This repository presents my approach to the challenge proposed. The goal is to build a robust, maintainable, and scalable solution for the milk price forecasting model. Also, I want to document some flaws encountered in the source jupyter notebook code that were ignored but, in a real-world scenario, would potentially be a risk factor.
+This repository presents my approach to the challenge proposed. The goal is to build a robust, maintainable, and scalable solution for the milk price forecasting model. Also, I want to document some flaws encountered in the source jupyter notebook code that were ignored but, in a real-world scenario, would potentially be a risk factor. The python version used for this project was 3.9.12
 
 ### TLDR Running the code
 To run this code, you must install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
