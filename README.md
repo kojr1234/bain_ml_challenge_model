@@ -41,5 +41,5 @@ The Data Scientist uses TrainTestSplit to separate the training and test set. Tr
 The source code appears to have more features than what was created in the presented jupyter notebook. The Data Scientist developed more features, such as moving averages and the actual value from the previous month.
 
 ### Issue 4)
-A minor issue found is how RMSE was calculated. The presented code only computes the mean squared error, but the root squared is not taken.
+A minor issue found is how RMSE was calculated. The source code only computes the mean squared error, but the root squared is not taken.
 
