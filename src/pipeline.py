@@ -1,3 +1,7 @@
+import pandas as pd
+from src.config import core
+from src.config.core import config
+from functools import reduce
 from multiprocessing.connection import Pipe
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -33,3 +37,25 @@ pipeline_final_data = Pipeline([('scale', StandardScaler()),
                  ('selector', SelectKBest(mutual_info_regression)),
                  ('poly', PolynomialFeatures()),
                  ('model', Ridge())])
+
+def preprocess_data(*,
+    rainfall_data: pd.DataFrame,
+    cb_data: pd.DataFrame,
+    milk_data: pd.DataFrame
+    ) -> pd.DataFrame:
+    """
+    Preprocess raw data to be used as input for the model
+    """
+
+    rainfall_data = pipeline_rainfall.transform(rainfall_data)
+    cb_data = pipeline_cb.transform(cb_data)
+    milk_data = pipeline_milk.transform(milk_data)
+
+    final_data = reduce(lambda l, r: pd.merge(l, r, on=['mes','ano'], how='inner'),
+                        [rainfall_data, cb_data, milk_data])
+
+    feature_columns = config.model_config.features
+    target_column = [config.model_config.target]
+    final_data = final_data[feature_columns + target_column]
+
+    return final_data
