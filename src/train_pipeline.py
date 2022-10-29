@@ -17,9 +17,9 @@ def run_training() -> None:
     Function to train the model
     """
 
-    rainfall_data = load_dataset(input_data='precipitaciones.csv')
-    cb_data = load_dataset(input_data='banco_central.csv')
-    milk_data = load_dataset(input_data='precio_leche.csv')
+    rainfall_data = load_dataset(file_name='precipitaciones.csv')
+    cb_data = load_dataset(file_name='banco_central.csv')
+    milk_data = load_dataset(file_name='precio_leche.csv')
 
     training_dataset = preprocess_data(
         rainfall_data=rainfall_data,
