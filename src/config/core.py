@@ -12,6 +12,13 @@ SOURCE_ROOT = Path(src.__file__).resolve().parent
 ROOT = SOURCE_ROOT.parent
 DATASET_DIR = SOURCE_ROOT / "data"
 CONFIG_FILE_PATH = SOURCE_ROOT / 'config.yml'
+TRAINED_MODEL_DIR = SOURCE_ROOT / 'model'
+
+class AppConfig(BaseModel):
+    """
+    Application configuration class
+    """
+    pipeline_save_file: str
 
 class ModelConfig(BaseModel):
     """
@@ -28,7 +35,7 @@ class Config(BaseModel):
     """
     Main config object
     """
-
+    app_config: AppConfig
     model_config: ModelConfig
 
 def fetch_config_from_yaml() -> dict:
@@ -47,9 +54,9 @@ def create_and_validate_config() -> dict:
     """
     parsed_config = fetch_config_from_yaml()
 
-    # specify the data attribute from the strictyaml YAML type.
     _config = Config(
-        model_config=ModelConfig(**parsed_config),
+        app_config=AppConfig(**parsed_config),
+        model_config=ModelConfig(**parsed_config)
     )
 
     return _config

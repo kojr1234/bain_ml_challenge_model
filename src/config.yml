@@ -1,3 +1,5 @@
+pipeline_save_file: milkprice_model_pipeline
+
 # columns as features
 features:
   - ano
