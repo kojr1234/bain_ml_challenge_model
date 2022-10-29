@@ -156,7 +156,7 @@ def validate_inputs(*,
         milkprice_errors = error.args
 
     return_data = {
-        'rainfall': {'data': rainfall, 'errors': rainfall_errors},
+        'rainfall': {'data': rainfall_data, 'errors': rainfall_errors},
         'centralbank': {'data': centralbank_data, 'errors': centralbank_errors},
         'milkprice': {'data': milkprice_data, 'errors': milkprice_errors}
     }
