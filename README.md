@@ -35,7 +35,7 @@ To build and run the docker images, you have to use the following commands:
 The jupyter notebook imports modules that were not present in the source code. Fortunately, the code did not utilize the module.
 
 ### Issue 2)
-The Data Scientist uses TrainTestSplit to separate the training and test set. TrainTestSplit randomly samples the data, assuming that the observations are independent, which is not valid for time series data. The way the model is currently developed, there is a high potential for data leakage and inflated results. A straightforward solution for this could be dividing the data by periods.
+The Data Scientist uses TrainTestSplit to separate the training and test set. TrainTestSplit randomly samples the data, assuming that the observations are independent, which is not valid for time series data. The way the model is currently developed, there is a high potential for data leakage and inflated results. A simple solution for this could be using a certain period as the trainig set, and all data beyond that date as test set.
 
 ### Issue 3)
 The source code appears to have more features than what was created in the presented jupyter notebook. The Data Scientist developed more features, such as moving averages and the actual value from the previous month.
