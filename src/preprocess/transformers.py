@@ -100,14 +100,25 @@ class MilkPricePreprocess(BaseEstimator, TransformerMixin):
     """
     def fit(self, X, y=None):
         return X
-
+    
     def transform(self, X):
         
-        import locale
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+        month_dict = {
+            'Ene': 1,
+            'Feb': 2,
+            'Mar': 3,
+            'Abr': 4,
+            'May': 5,
+            'Jun': 6,
+            'Jul': 7,
+            'Ago': 8,
+            'Sep': 9,
+            'Oct': 10,
+            'Nov': 11,
+            'Dic': 12
+        }
 
         X.rename(columns = {'Anio': 'ano', 'Mes': 'mes_pal'}, inplace = True)
-        X['mes'] = pd.to_datetime(X['mes_pal'] + '.', format = '%b')
-        X['mes'] = X['mes'].apply(lambda x: x.month)
+        X['mes'] = X['mes_pal'].map(month_dict)
         X['mes-ano'] = X.apply(lambda x: f'{x.mes}-{x.ano}', axis = 1)
         return X

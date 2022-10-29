@@ -1,4 +1,4 @@
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union, Any
 
 import numpy as np
 import pandas as pd
@@ -112,16 +112,158 @@ class MultipleRainfallDataInputs(BaseModel):
     # it will receive a list of dictionary
     # each element is a row of the dataset
     inputs: List[RainfallDataInputSchema]
+    class Config:
+        # the schema_extra example here
+        # is used for placeholder default in
+        # our api docs
+        # the schema_extra allows to exnted
+        # or override the already existent
+        # json schema using the key examples
+        schema_extra = {
+            "example": {
+                "inputs": [
+                    {
+                        "date":"2020-04-01",
+                        "Coquimbo":0.5560849673,
+                        "Valparaiso":4.6647077922,
+                        "Metropolitana_de_Santiago":16.0337751678,
+                        "Libertador_Gral__Bernardo_O_Higgins":19.795751938,
+                        "Maule":37.3485108153,
+                        "Biobio":66.764275266,
+                        "La_Araucania":73.8132901752,
+                        "Los_Rios":140.0767571059 
+                    }
+                ]
+            }
+        }
 
 class MultipleCentralBankDataInputs(BaseModel):
     # it will receive a list of dictionary
     # each element is a row of the dataset
     inputs: List[CentralBankDataInputSchema]
+    class Config:
+        # the schema_extra example here
+        # is used for placeholder default in
+        # our api docs
+        # the schema_extra allows to exnted
+        # or override the already existent
+        # json schema using the key examples
+        schema_extra = {
+            "example": {
+                "inputs": [
+                    {
+                        "Periodo":"2020-04-01 00:00:00 UTC",
+                        "Imacec_empalmado":"988.542.998",
+                        "Imacec_produccion_de_bienes":"100.570.487",
+                        "Imacec_minero":"986.442.174",
+                        "Imacec_industria":"969.425.393",
+                        "Imacec_resto_de_bienes":"104.850.643",
+                        "Imacec_comercio":"926.889.279",
+                        "Imacec_servicios":"100.658.794",
+                        "Imacec_a_costo_de_factores":"99.848.482",
+                        "Imacec_no_minero":"987.676.061",
+                        "PIB_Agropecuario_silvicola":"363.141.386",
+                        "PIB_Pesca":"103.928.937",
+                        "PIB_Mineria":"124.486.767",
+                        "PIB_Mineria_del_cobre":"112.002.235",
+                        "PIB_Otras_actividades_mineras":"125.671.822",
+                        "PIB_Industria_Manufacturera":"123.809.203",
+                        "PIB_Alimentos":"371.654.364",
+                        "PIB_Bebidas_y_tabaco":"141.425.146",
+                        "PIB_Textil":"138.774.296",
+                        "PIB_Maderas_y_muebles":"561.712.194",
+                        "PIB_Celulosa":"102.107.754",
+                        "PIB_Refinacion_de_petroleo":"709.361.006",
+                        "PIB_Quimica":"189.715.716",
+                        "PIB_Minerales_no_metalicos_y_metalica_basica":"577.871.238",
+                        "PIB_Productos_metalicos":"218.328.917",
+                        "PIB_Electricidad":"310.498.611",
+                        "PIB_Construccion":"719.814.687",
+                        "PIB_Comercio":"96.673.133",
+                        "PIB_Restaurantes_y_hoteles":"123.964.781",
+                        "PIB_Transporte":"427.830.949",
+                        "PIB_Comunicaciones":"421.132.099",
+                        "PIB_Servicios_financieros":"744.844.553",
+                        "PIB_Servicios_empresariales":"119.801.603",
+                        "PIB_Servicios_de_vivienda":"929.186.849",
+                        "PIB_Servicios_personales":"113.174.769",
+                        "PIB_Administracion_publica":"608.806.973",
+                        "PIB_a_costo_de_factores":"104.996.697",
+                        "Impuesto_al_valor_agregado":"810.937.543",
+                        "Derechos_de_Importacion":"443.485.676",
+                        "PIB":"113.580.473",
+                        "Precio_de_la_gasolina_en_EEUU_dolaresm3":"14.657.816",
+                        "Precio_de_la_onza_troy_de_oro_dolaresoz":1686.32,
+                        "Precio_de_la_onza_troy_de_plata_dolaresoz":151.171,
+                        "Precio_del_cobre_refinado_BML_dolareslibra":"228.987.118",
+                        "Precio_del_diesel_centavos_de_dolargalon":79.49,
+                        "Precio_del_gas_natural_dolaresmillon_de_unidades_termicas_britanicas":1.7386,
+                        "Precio_del_petroleo_Brent_dolaresbarril":23.34,
+                        "Precio_del_kerosene_dolaresm3":"16.176.966",
+                        "Precio_del_petroleo_WTI_dolaresbarril":16.52,
+                        "Precio_del_propano_centavos_de_dolargalon_DTN":32.56,
+                        "Tipo_de_cambio_del_dolar_observado_diario":"853.379.048",
+                        "Ocupados":"823.593.079",
+                        "Ocupacion_en_Agricultura_INE":"598.610.099",
+                        "Ocupacion_en_Explotacion_de_minas_y_canteras_INE":"224.662.856",
+                        "Ocupacion_en_Industrias_manufactureras_INE":"809.715.366",
+                        "Ocupacion_en_Suministro_de_electricidad_INE":"526.575.846",
+                        "Ocupacion_en_Actividades_de_servicios_administrativos_y_de_apoyo_INE":"280.173.856",
+                        "Ocupacion_en_Actividades_profesionales_INE":"279.400.485",
+                        "Ocupacion_en_Actividades_inmobiliarias_INE":"870.253.865",
+                        "Ocupacion_en_Actividades_financieras_y_de_seguros_INE":"189.650.182",
+                        "Ocupacion_en_Informacion_y_comunicaciones_INE":"168.809.978",
+                        "Ocupacion_en_Transporte_y_almacenamiento_INE":"525.126.797",
+                        "Ocupacion_en_Actividades_de_alojamiento_y_de_servicio_de_comidas_INE":"344.474.955",
+                        "Ocupacion_en_Construccion_INE":"682.082.615",
+                        "Ocupacion_en_Comercio_INE":"152.862.437",
+                        "Ocupacion_en_Suministro_de_agua_evacuacion_de_aguas_residuales_INE":"625.883.032",
+                        "Ocupacion_en_Administracion_publica_y_defensa_INE":"493.383.376",
+                        "Ocupacion_en_Enseanza_INE":"721.169.492",
+                        "Ocupacion_en_Actividades_de_atencion_de_la_salud_humana_y_de_asistencia_social_INE":"521.398.817",
+                        "Ocupacion_en_Actividades_artisticas_INE":"828.194.928",
+                        "Ocupacion_en_Otras_actividades_de_servicios_INE":"274.863.546",
+                        "Ocupacion_en_Actividades_de_los_hogares_como_empleadores_INE":"281.386.489",
+                        "Ocupacion_en_Actividades_de_organizaciones_y_organos_extraterritoriales_INE":"0",
+                        "No_sabe__No_responde_Miles_de_personas":"273.067.521",
+                        "Tipo_de_cambio_nominal_multilateral___TCM":"121.110.952",
+                        "Indice_de_tipo_de_cambio_real___TCR_promedio_1986_100":"105.982.122",
+                        "Indice_de_produccion_industrial":"960.396.492",
+                        "Indice_de_produccion_industrial__mineria":"928.533.255",
+                        "Indice_de_produccion_industrial_electricidad__gas_y_agua":"100.815.336",
+                        "Indice_de_produccion_industrial__manufacturera":"980.837.688",
+                        "Generacion_de_energia_electrica_CDEC_GWh":"6181.5",
+                        "Indice_de_ventas_comercio_real_IVCM":"757.349.073",
+                        "Indice_de_ventas_comercio_real_no_durables_IVCM":"763.378.636",
+                        "Indice_de_ventas_comercio_real_durables_IVCM":"731.898.208",
+                        "Ventas_autos_nuevos":8906.0
+                    }
+                ]
+            }
+        }
 
 class MultipleMilkPriceDataInputs(BaseModel):
     # it will receive a list of dictionary
     # each element is a row of the dataset
     inputs: List[MilkPriceDataInputSchema]
+    class Config:
+        # the schema_extra example here
+        # is used for placeholder in
+        # our api
+        # the schema_extra allows to exnted
+        # or override the already existent
+        # json schema using the key examples
+        schema_extra = {
+            "example": {
+                "inputs": [
+                    {
+                        "Anio":2020,
+                        "Mes":"Abr",
+                        "Precio_leche":316.25
+                    }
+                ]
+            }
+        }
 
 def validate_inputs(*, 
     rainfall_data: pd.DataFrame,
@@ -167,4 +309,6 @@ def validate_inputs(*,
     }
 
     return return_data
+
+
         

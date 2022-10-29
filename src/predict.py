@@ -7,6 +7,7 @@ from src.pipeline import preprocess_data
 from src.preprocess.data_manager import load_pipeline
 from src.preprocess.data_validation import validate_inputs
 from src.config.core import config
+from src.config import core
 
 import logging
 FORMAT = "%(asctime)s %(filename)s %(message)s"
@@ -31,6 +32,7 @@ def make_prediction(*,
     logging.info('Validating data!')
 
     no_errors = True
+
     for k, v in data_meta.items():
         if v['errors']:
             no_errors = False
