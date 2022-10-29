@@ -3,7 +3,7 @@ This repository presents my approach to the challenge proposed. The goal is to b
 
 **The python version used for this project was 3.9.12**
 
-### TLDR Running the code
+### Running the code
 To run this code, you must install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
 
 ```pip install tox```
