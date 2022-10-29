@@ -120,11 +120,10 @@ class MultipleRainfallDataInputs(BaseModel):
     inputs: List[RainfallDataInputSchema]
     class Config:
         # the schema_extra example here
-        # is used for placeholder default in
-        # our api docs
-        # the schema_extra allows to exnted
-        # or override the already existent
-        # json schema using the key examples
+        # is used as placeholder  in the api docs
+        # the schema_extra allows
+        # override the already existent
+        # json schema using the input given
         schema_extra = {
             "example": {
                 "inputs": [
@@ -149,11 +148,10 @@ class MultipleCentralBankDataInputs(BaseModel):
     inputs: List[CentralBankDataInputSchema]
     class Config:
         # the schema_extra example here
-        # is used for placeholder default in
-        # our api docs
-        # the schema_extra allows to exnted
-        # or override the already existent
-        # json schema using the key examples
+        # is used as placeholder  in the api docs
+        # the schema_extra allows
+        # override the already existent
+        # json schema using the input given
         schema_extra = {
             "example": {
                 "inputs": [
@@ -254,11 +252,10 @@ class MultipleMilkPriceDataInputs(BaseModel):
     inputs: List[MilkPriceDataInputSchema]
     class Config:
         # the schema_extra example here
-        # is used for placeholder in
-        # our api
-        # the schema_extra allows to exnted
-        # or override the already existent
-        # json schema using the key examples
+        # is used as placeholder  in the api docs
+        # the schema_extra allows
+        # override the already existent
+        # json schema using the input given
         schema_extra = {
             "example": {
                 "inputs": [
