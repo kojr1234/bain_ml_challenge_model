@@ -6,30 +6,30 @@ This repository presents my approach to the challenge proposed. The goal is to b
 ### Running the code
 To run this code, you only need to install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
 
-```pip install tox```
+```$ pip install tox```
 
 With tox installed, you can go to the source directory (the same folder where tox.ini is located) and run 
 
-```tox```
+```$ tox```
 
 To install all necessary packages and run the whole pipeline in an isolated environment
 You can run the test pipeline by executing:
 
-```tox -e test_package```
+```$ tox -e test_package```
 
 It is also possible to run only the train pipeline by executing the command:
 
-```tox -e train```
+```$ tox -e train```
 
 And finally, if you want to only host the API locally:
 
-```tox -e run_app```
+```$ tox -e run_app```
 
 To build and run the docker images, you have to use the following commands:
 
-```docker build -t bain-ml-challenge:latest .```
+```$ docker build -t bain-ml-challenge:latest .```
 
-```docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
+```$ docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
 
 The **0.0.0.0:8001** might no work, but **localhost:8001** (or any other port you define) will work just fine.
 
