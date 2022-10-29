@@ -17,7 +17,7 @@ You can run the test pipeline by executing:
 
 ```tox -e test_package```
 
-It is also possible to run onyl the train pipeline by executing the command:
+It is also possible to run only the train pipeline by executing the command:
 
 ```tox -e train```
 
@@ -30,6 +30,8 @@ To build and run the docker images, you have to use the following commands:
 ```docker build -t bain-ml-challenge:latest .```
 
 ```docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
+
+# Potential risk found in development
 
 ### Issue 1)
 The jupyter notebook imports modules that were not present in the source code. Fortunately, the code did not utilize the module.
