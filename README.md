@@ -31,7 +31,7 @@ To build and run the docker images, you have to use the following commands:
 
 ```docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
 
-# Potential risk found in development
+# Potential risks found in the development
 
 ### Issue 1)
 The jupyter notebook imports modules that were not present in the source code. Fortunately, the code did not utilize the module.
