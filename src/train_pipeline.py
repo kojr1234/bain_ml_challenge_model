@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 
 from src.config.core import config
+from src.preprocess.data_manager import load_dataset
 from src.pipeline import pipeline_final_data, preprocess_data
 
 logging.basicConfig(level=logging.INFO)
@@ -16,9 +17,9 @@ def run_training() -> None:
     Function to train the model
     """
 
-    rainfall_data = pd.read_csv(core.DATASET_DIR / 'precipitaciones.csv')
-    cb_data = pd.read_csv(core.DATASET_DIR / 'banco_central.csv')
-    milk_data = pd.read_csv(core.DATASET_DIR / 'precio_leche.csv')
+    rainfall_data = load_dataset(input_data='precipitaciones.csv')
+    cb_data = load_dataset(input_data='banco_central.csv')
+    milk_data = load_dataset(input_data='precio_leche.csv')
 
     training_dataset = preprocess_data(
         rainfall_data=rainfall_data,
