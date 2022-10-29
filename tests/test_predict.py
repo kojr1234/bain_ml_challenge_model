@@ -7,7 +7,7 @@ from src.config.core import config
 from src.predict import make_prediction
 
 def test_data_validation(rainfall_data: pd.DataFrame, cb_data: pd.DataFrame, milk_price_data: pd.DataFrame):
-    # I defined that Coquimbo should either receive an int or null value
+    # I defined that Coquimbo should either receive an int or null value (see src/preprocess/data_validation.py)
     # this should yield an error
     rainfall_data['Coquimbo'] = 'abc'
 
@@ -19,6 +19,7 @@ def test_data_validation(rainfall_data: pd.DataFrame, cb_data: pd.DataFrame, mil
 
     for k, v in data_meta.items():
         if k == 'rainfall':
+            # should have one error because wrong data type for Coquimbo column
             assert v['errors']
         else:
             assert not v['errors']
