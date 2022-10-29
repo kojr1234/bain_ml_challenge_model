@@ -44,6 +44,12 @@ def predict(*,
     rainfall_data: MultipleRainfallDataInputs,
     centralbank_data: MultipleCentralBankDataInputs,
     milkprice_data: MultipleMilkPriceDataInputs) -> Any:
+    """
+    Prediction endpoint. This endpoint receives the data
+    from three sources: the rainfall data, central bank data, and milkprice data.
+    All data are encoded in a single json separated by 3 keys. This endpoint
+    validates the input and retrieves the prediction for the given input.
+    """
 
     rainfall_data = pd.DataFrame(jsonable_encoder(rainfall_data.inputs)).replace(
         {np.nan: None}
