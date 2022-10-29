@@ -8,6 +8,11 @@ from src.preprocess.data_manager import load_pipeline
 from src.preprocess.data_validation import validate_inputs
 from src.config.core import config
 
+import logging
+FORMAT = "%(asctime)s %(filename)s %(message)s"
+logging.basicConfig(filename=core.LOGS_DIR / 'predict_logs', level=logging.INFO, format=FORMAT)
+logger = logging.getLogger(__name__)
+
 def make_prediction(*, 
     rainfall_data: Union[pd.DataFrame, dict],
     centralbank_data: Union[pd.DataFrame, dict],
@@ -22,11 +27,18 @@ def make_prediction(*,
         centralbank_data=centralbank_data,
         milkprice_data=milkprice_data
     )
+    
+    logging.info('Validating data!')
 
     no_errors = True
     for k, v in data_meta.items():
         if v['errors']:
             no_errors = False
+    
+    if no_errors:
+        logging.info('Data validated and no errors found!')
+    else:
+        logging.warning('Data validated and errors found!')
 
     results = {
         "predictions": None,

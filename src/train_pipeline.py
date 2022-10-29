@@ -4,11 +4,13 @@ import numpy as np
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 
+from src.config import core
 from src.config.core import config
 from src.preprocess.data_manager import load_dataset, save_pipeline
 from src.pipeline import pipeline_final_data, preprocess_data
 
-logging.basicConfig(level=logging.INFO)
+FORMAT = "%(asctime)s %(filename)s %(message)s"
+logging.basicConfig(filename=core.LOGS_DIR / 'training_logs', level=logging.INFO, format=FORMAT)
 logger = logging.getLogger(__name__)
 
 def run_training() -> None:
@@ -16,15 +18,18 @@ def run_training() -> None:
     Function to train the model
     """
 
+    
     rainfall_data = load_dataset(file_name='precipitaciones.csv')
     cb_data = load_dataset(file_name='banco_central.csv')
     milk_data = load_dataset(file_name='precio_leche.csv')
+    logging.info('Datasets successfully loaded!')
 
     training_dataset = preprocess_data(
         rainfall_data=rainfall_data,
         centralbank_data=cb_data,
         milkprice_data=milk_data
     )
+    logging.info('Datasets successfully processed!')
 
     X = training_dataset[config.model_config.features]
     y = training_dataset[config.model_config.target]
@@ -43,8 +48,10 @@ def run_training() -> None:
         scoring = 'r2'
     )
     grid.fit(X_train, y_train)
+    logging.info('Model successfully trained!')
 
     save_pipeline(pipeline_to_persist=grid)
+    logging.info('Model successfully saved!')
 
     y_predicted = grid.predict(X_test)
 

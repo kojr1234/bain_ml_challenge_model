@@ -5,14 +5,12 @@ from pathlib import Path
 import yaml
 import src
 
-FORMAT = "%(asctime)s  %(message)s"
-logging.basicConfig(format=FORMAT)
-
 SOURCE_ROOT = Path(src.__file__).resolve().parent
 ROOT = SOURCE_ROOT.parent
 DATASET_DIR = SOURCE_ROOT / "data"
 CONFIG_FILE_PATH = SOURCE_ROOT / 'config.yml'
 TRAINED_MODEL_DIR = SOURCE_ROOT / 'model'
+LOGS_DIR = ROOT / 'logs'
 
 class AppConfig(BaseModel):
     """
