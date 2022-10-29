@@ -4,7 +4,7 @@ This repository presents my approach to the challenge proposed. The goal is to b
 **The python version used for this project was 3.9.12**
 
 ### Running the code
-To run this code, you must install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
+To run this code, you only need to install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
 
 ```pip install tox```
 
@@ -12,7 +12,7 @@ With tox installed, you can go to the source directory (the same folder where to
 
 ```tox```
 
-To install all necessary packages and run the whole pipeline.
+To install all necessary packages and run the whole pipeline in an isolated environment
 You can run the test pipeline by executing:
 
 ```tox -e test_package```
