@@ -1,7 +1,7 @@
 # Bain Machine Learning Engineer Challenge
 This repository presents my approach to the challenge proposed. The goal is to build a robust, maintainable, and scalable solution for the milk price forecasting model. Also, I want to document some flaws encountered in the source jupyter notebook code that were ignored but, in a real-world scenario, would potentially be a risk factor. 
 
-**The python version used for this project was 3.9.12. Please, run this code with any version above 3.9**
+**The python version used for this project was 3.9.12. Please, run this code with any version above 3.9.**
 
 ### Running the code
 To run this code, you only need to install tox (https://tox.wiki/en/latest/), a python package for testing in isolated environments.
@@ -31,7 +31,7 @@ To build and run the docker images, you have to use the following commands:
 
 ```$ docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
 
-The **0.0.0.0:8001** might no work, but **localhost:8001** (or any other port you define) will work just fine.
+The **0.0.0.0:8001** might not work, but **localhost:8001** (or any other port you define) will work just fine.
 
 # Key points
 All of the relevant code is located in the src.
