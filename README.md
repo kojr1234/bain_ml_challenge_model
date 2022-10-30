@@ -42,13 +42,13 @@ All of the relevant code is located in the src. I tried to structure the reposit
 
 # How I tackled this problem
 
-The first thing I did was to understand all the data pipeline and encapsulate in a simple and readable way. I separated the preprocessing in 3 parts, one for each dataset. Because the treatment made was ad-hoc, I implemented each preprocessing transformer using the provided source code.
+First, I understood the data pipeline and encapsulated it in a simple and readable way. Then, I separated the preprocessing into three parts for each dataset. Because the treatment was ad-hoc, I implemented each preprocessing transformer using the source code.
 
-To train the model, I followed the same steps taken in the jupyter notebook, but focusing only in the delivered solution, and not in the plot.
+To train the model, I followed the same steps in the jupyter notebook, focusing only on the delivered solution and not on the plot.
 
-To make inference, I developed a data validation script to ensure data consistency accross the data flow. 
+To make the inference, I developed a data validation script to ensure data consistency across the data flow.
 
-Finally, the application script was developed using FastAPI. The good thing about using FastAPI with pydantic is that pydantic can automatically convert data types to the correct one when used with FastAPI. Also, FastAPI simplicity makes the code easier to understand.
+Finally, the application script was developed using FastAPI. The good thing about using FastAPI with pydantic is that pydantic can automatically convert data types to the correct ones when used with FastAPI. Also, FastAPI simplicity makes the code easier to understand.
 
 # Potential risks found in the development
 
