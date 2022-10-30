@@ -31,7 +31,7 @@ To build and run the docker images, you have to use the following commands:
 
 ```$ docker run -p 8001:8001 -e PORT=8001 bain-ml-challenge```
 
-The **0.0.0.0:8001** might not work, but **localhost:8001** (or any other port you define) will work just fine.
+The **0.0.0.0:8001** might not work, but **localhost:8001** will work just fine.
 
 # Key points
 All of the relevant code is located in the src.
