@@ -34,7 +34,7 @@ To build and run the docker images, you have to use the following commands:
 The **0.0.0.0:8001** might no work, but **localhost:8001** (or any other port you define) will work just fine.
 
 # Key points
-All of the relevant code is located in the src. I tried to structure the repository so the files has a straightforward format.
+All of the relevant code is located in the src.
 - The preprocessing script is **src/pipeline.py**
 - The training script is **src/train_pipeline.py**
 - Prediction script is **src/predict.py**
