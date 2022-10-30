@@ -33,7 +33,7 @@ To build and run the docker images, you have to use the following commands:
 
 The **0.0.0.0:8001** might not work, but **localhost:8001** will work just fine.
 
-When accessing the api and you see the message: "Check the docs: here", go to the docs so you can test the API.
+When accessing the api and you will see the message: "Bain ML Challenge API Check the docs: here". By clicking on 'here' you will be sent to the Swagger UI, where you can test the API and see its inputs.
 
 # Key points
 All of the relevant code is located in the src.
