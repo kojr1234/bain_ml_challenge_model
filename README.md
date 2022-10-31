@@ -60,6 +60,8 @@ The jupyter notebook imports modules that were not present in the source code. F
 ### Issue 2)
 The Data Scientist uses TrainTestSplit to separate the training and test set. TrainTestSplit randomly samples the data, which is a good approach to develop models where observations are IID, which is not valid for time series data. Because the data scientist used TrainTestSplit to split the training and test set, there is a high risk of data leakage and inflated metric results. A simple solution for this could be using a certain period as the trainig set, and all data beyond that date as test set.
 
+The same applies to the model used, which was ridge regression. Although this is not a big of an issue like using TrainTestSplit, using time series models might improve performance of predictions.
+
 ### Issue 3)
 The source code appears to have more features than what was created in the presented jupyter notebook. The Data Scientist developed more features, such as moving averages and the actual value from the previous month.
 
