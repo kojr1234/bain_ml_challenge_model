@@ -36,7 +36,7 @@ The **0.0.0.0:8001** might not work, but **localhost:8001** will work just fine.
 When accessing the api and you will see the message: "Bain ML Challenge API Check the docs: here". By clicking on 'here' you will be sent to the Swagger UI, where you can test the API and see its inputs.
 
 # Key points
-All of the relevant code is located in the src.
+The relevant code is located in the src.
 - The preprocessing script is **src/pipeline.py**
 - The training script is **src/train_pipeline.py**
 - Prediction script is **src/predict.py**
