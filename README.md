@@ -25,7 +25,7 @@ And finally, if you want to only host the API locally:
 
 ```$ tox -e run_app```
 
-To build and run the docker images, you have to use the following commands:
+If you don't want to test the code, you can go straight to build and run the docker image, using the following commands:
 
 ```$ docker build -t bain-ml-challenge:latest .```
 
