@@ -8,7 +8,7 @@ To run this code, you only need to install tox (https://tox.wiki/en/latest/), a 
 
 ```$ pip install tox```
 
-With tox installed, you can go to the source directory (the same folder where tox.ini is located) and run 
+With tox installed, you have to go to the source directory (the same folder where tox.ini is located) and run 
 
 ```$ tox```
 
