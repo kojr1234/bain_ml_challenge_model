@@ -33,7 +33,7 @@ If you don't want to test the code, you can go straight to build and run the doc
 
 The **0.0.0.0:8001** might not work, but **localhost:8001** will work just fine.
 
-When accessing the api and you will see the message: "Bain ML Challenge API Check the docs: here". By clicking on 'here' you will be sent to the Swagger UI, where you can test the API and see its inputs.
+When accessing the api you will see the message: "Bain ML Challenge API Check the docs: here". By clicking on 'here' you will be sent to the Swagger UI, where you can test the API and see its inputs.
 
 # Key points
 The relevant code is located in the src.
