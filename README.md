@@ -12,7 +12,7 @@ With tox installed, you have to go to the source directory (the same folder wher
 
 ```$ tox```
 
-To install all necessary packages and run the whole pipeline in an isolated environment
+The commamd above will install all the necessary packages and run the whole pipeline in an isolated environment.
 You can run the test pipeline by executing:
 
 ```$ tox -e test_package```
